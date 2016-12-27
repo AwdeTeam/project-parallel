@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://graphics/thing.tex" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 19.4883, 20.1222 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Wall" type="Sprite" parent="."]
+
+transform/pos = Vector2( 80, 79.3836 )
+transform/scale = Vector2( 3.2, 3.17535 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 160, 160 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
+
+transform/pos = Vector2( 0.0717061, 0.161259 )
+transform/scale = Vector2( 0.785553, 0.788359 )
+input/pickable = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1.42296, 0, 0, 1.38395, -2.38419e-07, 7.15256e-07 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D"]
+
+transform/pos = Vector2( -2.38419e-07, 7.15256e-07 )
+transform/scale = Vector2( 1.42296, 1.38395 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+

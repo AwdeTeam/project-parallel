@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 
 # class member variables go here, for example:
 # var a = 2
@@ -7,14 +7,14 @@ var Global = load("scripts/Global.gd")
 var PlayerClass = load("scripts/Player.gd")
 var parent_player = PlayerClass.new(500)
 
-var graphic
-
 func _ready():
 	# Called every time the node is added to the scene.
-	graphic = get_node("graphic")
-	set_process(true)
+	# Initialization here
+	get_node("instance_camera").make_current()
+	set_fixed_process(true)
+	pass
 
-func _process(delta):
+func _fixed_process(delta):
 	# determine if must move
 	var up = Input.is_action_pressed("game_up")
 	var down = Input.is_action_pressed("game_down")
@@ -39,23 +39,17 @@ func _process(delta):
 	elif (right): dpos = calculate_movement(delta, Global.EAST)
 
 	# make it move!
-	self.move(dpos)
-
-func move(dpos):
-	var graphic_position = graphic.get_pos()
-	graphic_position.x += dpos[0]
-	graphic_position.y += dpos[1]
-	graphic.set_pos(graphic_position)
+	move(Vector2(dpos[0], dpos[1]))
 
 func calculate_movement(delta, direction):
+	# Calculate cardinal distance and diaganol distance
 	var distance = delta * parent_player.speed
 	var distanceroot = delta * sqrt((parent_player.speed*parent_player.speed/2))
-	print("distance: " + str(distance)) # DEBUG
-	print("distanceroot: " + str(distanceroot))
 	
 	var dy = 0
 	var dx = 0
 	
+	# determine distance changes
 	if (direction == 0):
 		dy = -distance
 	elif (direction == 1):
