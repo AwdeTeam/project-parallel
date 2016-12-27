@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://counter.gd" type="Script" id=1]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="lbl_counter" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1559.0
+margin/top = 0.0
+margin/right = 1599.0
+margin/bottom = 14.0
+text = "999"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 1 )
+
+
