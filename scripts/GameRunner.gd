@@ -11,7 +11,8 @@ func _ready():
 	var worldthing = preload("res://scenes/world.tscn").instance()
 	get_node("world").add_child(worldthing)
 	
-	# var guithing
+	var guithing = preload("res://scenes/ui.tscn").instance()
+	get_node("gui").add_child(guithing)
 	
 	
 	pass

@@ -8,6 +8,11 @@ script/script = ExtResource( 1 )
 
 [node name="world" type="Node2D" parent="."]
 
-[node name="gui" type="Node2D" parent="."]
+[node name="gui" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
 
 
