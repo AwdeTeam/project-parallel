@@ -1,8 +1,5 @@
 extends KinematicBody2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 var Global = load("scripts/Global.gd")
 var PlayerClass = load("scripts/Player.gd")
 var parent_player = PlayerClass.new(500)
@@ -12,7 +9,6 @@ func _ready():
 	# Initialization here
 	get_node("instance_camera").make_current()
 	set_fixed_process(true)
-	pass
 
 func _fixed_process(delta):
 	# determine if must move
