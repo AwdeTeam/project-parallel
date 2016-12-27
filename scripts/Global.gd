@@ -13,3 +13,6 @@ const NORTHWEST = 7
 
 # player turn
 var player_turn = 0 # 0 = none (in between), 1 = player 1, 2 = player 2
+
+var player_1
+var player_2

@@ -3,6 +3,7 @@ extends Node2D
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
+var Global = load("scripts/Global.gd")
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -16,3 +17,8 @@ func _ready():
 	
 	
 	pass
+
+func add_player():
+	var PlayerClass = load("scripts/Player.gd")
+	self.Global.player_1 = PlayerClass.new(500, 1)
+	self.Global.player_2 = PlayerClass.new(500, 2)

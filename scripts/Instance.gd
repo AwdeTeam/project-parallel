@@ -1,8 +1,11 @@
 extends KinematicBody2D
 
 var Global = load("scripts/Global.gd")
-var PlayerClass = load("scripts/Player.gd")
-var parent_player = PlayerClass.new(500)
+#var PlayerClass = load("scripts/Player.gd")
+var parent_player
+
+func _init(parent):
+	self.parent_player = parent
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -11,6 +14,8 @@ func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
+	if(Global.player_turn != self.parent_player.player_id):
+		return
 	# determine if must move
 	var up = Input.is_action_pressed("game_up")
 	var down = Input.is_action_pressed("game_down")
