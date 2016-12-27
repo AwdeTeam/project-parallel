@@ -7,7 +7,6 @@ extends Node2D
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	#var playerthing = load("res://scenes/instance/instance.tscn").instance()
 	var playerthing = preload("res://scenes/instance/instance.tscn").instance()
 	get_node("instances_container").add_child(playerthing)
 	
