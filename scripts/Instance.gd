@@ -39,7 +39,14 @@ func _fixed_process(delta):
 	elif (right): dpos = calculate_movement(delta, Global.EAST)
 
 	# make it move!
-	move(Vector2(dpos[0], dpos[1]))
+	var movement = Vector2(dpos[0], dpos[1])
+	move(movement)
+	
+	# fix sticking to walls issue
+	if (is_colliding()):
+		var collision_normal = get_collision_normal()
+		movement = collision_normal.slide(movement)
+		move(movement)
 
 func calculate_movement(delta, direction):
 	# Calculate cardinal distance and diaganol distance
