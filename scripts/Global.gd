@@ -29,6 +29,7 @@ var currently_active_instance # this is the actual instance reference
 var game_running = true
 
 var trap_instances = []
+var trap_type_being_added
 
 var acting = false
 
