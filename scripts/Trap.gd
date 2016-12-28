@@ -42,6 +42,9 @@ func get_gridsquare():
 func activate_trap(body):
 	if (set == false): return
 	print("I'm activated by: " + str(body))
+	if (!(body in Global.player_1.instances) and !(body in Global.player_2.instances)):
+		print("IGNORING ACTIVATION - not an instance")
+		return
 	
 	if (self.type == "portal_in" and self.has_output == true):
 		var pos = Global.get_gridsquare_pixels(output_gridsquare[0], output_gridsquare[1])
@@ -49,13 +52,12 @@ func activate_trap(body):
 		body.set_pos(vector_pos)
 	
 	if (self.type == "proxbomb"):
-		if (body.parent_player.instances.size() > 1):
-			body.remove()
-			Global.remove_trap(instance_index)
-			return
+		body.damage(Global.PROX_BOMB_DMG)
+		Global.remove_trap(instance_index)
+		return
 
 func remove():
-	remove_child(get_node("graphic"))
+	remove_child(get_node("graphic")) #since apparently can't just remove self node......
 	remove_child(get_node("collider"))
 
 func _set():
