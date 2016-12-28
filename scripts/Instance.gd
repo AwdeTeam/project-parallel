@@ -50,7 +50,7 @@ func _fixed_process(delta):
 	if (Global.currently_active_instance != self):
 		return
 	
-	
+	parent_player.subtract_time(delta)
 
 	elapsed_time += delta
 	lbl_counter.set_text(str(round(elapsed_time)))
