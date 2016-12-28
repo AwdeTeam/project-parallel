@@ -4,6 +4,8 @@
 
 [node name="container" type="Node2D"]
 
+transform/scale = Vector2( 1, 1 )
+
 [node name="Label" type="Label" parent="."]
 
 focus/ignore_mouse = true

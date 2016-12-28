@@ -2,22 +2,18 @@ extends KinematicBody2D
 
 var Global
 var PlayerClass = load("scripts/Player.gd")
-var parent_player = PlayerClass.new(500, 1)
+var parent_player
 
 func _init():
 	pass
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
+
 	Global = get_node("/root/Global")
-	#parent_player = Global.player_1
-	#get_node("instance_camera").make_current()
 	set_fixed_process(true)
-	
+
 	print(str(Global.player_adding_instance))
 	if (Global.player_adding_instance == 1):
-		print("adding instance to dictionary 1")
 		parent_player = Global.player_1
 		Global.player_1_instances.append(self)
 	elif (Global.player_adding_instance == 2):

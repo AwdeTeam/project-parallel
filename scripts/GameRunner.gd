@@ -44,5 +44,5 @@ func end_turn():
 
 func create_players():
 	var PlayerClass = load("scripts/Player.gd")
-	self.Global.player_1 = PlayerClass.new(500, 1)
-	self.Global.player_2 = PlayerClass.new(500, 2)
+	self.Global.player_1 = PlayerClass.new(500, 1, Global)
+	self.Global.player_2 = PlayerClass.new(500, 2, Global)

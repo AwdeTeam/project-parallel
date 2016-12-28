@@ -1,15 +1,9 @@
 extends Node2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-
 var Global
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	
+
 	Global = get_node("/root/Global")
 	
 	#var playerthing = preload("res://scenes/instance/instance.tscn").instance()
