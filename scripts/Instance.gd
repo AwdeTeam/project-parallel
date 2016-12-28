@@ -75,9 +75,17 @@ func _fixed_process(delta):
 	
 	if (act):
 		#Global.acting = true
+		#print("localx: " + str(get_local_mouse_pos().x) + " localy: " + str(get_local_mouse_pos().y))
 		#print(str(get_viewport().get_mouse_pos().x + get_pos().x) + ", " + str(get_viewport().get_mouse_pos().y + get_pos().y))
-		var sqr = Global.get_pixels_gridsquare(get_viewport().get_mouse_pos().x, get_viewport().get_mouse_pos().y)
+		var local_mouse_pixel = get_node("/root/container/world").get_local_mouse_pos()
+		# account for offset
+		local_mouse_pixel.x -= 80
+		local_mouse_pixel.y -= 80
+		print("localx: " + str(local_mouse_pixel.x) + " localy: " + str(local_mouse_pixel.y))
+		#var sqr = Global.get_pixels_gridsquare(get_viewport().get_mouse_pos().x, get_viewport().get_mouse_pos().y)
+		var sqr = Global.get_pixels_gridsquare(local_mouse_pixel.x, local_mouse_pixel.y)
 		Global.game.world.add_trap(sqr[0], sqr[1], self.parent_player.player_id, "portal_in")
+		Global.trap_instances[0]._set()
 	
 	var dpos = [0,0]
 	# diagonals
