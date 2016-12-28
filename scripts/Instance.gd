@@ -70,6 +70,9 @@ func _fixed_process(delta):
 	var left = Input.is_action_pressed("game_left")
 	var right = Input.is_action_pressed("game_right")
 	
+	# check if placing trao
+	var act = Input.is_action_pressed("game_action")
+	
 	var dpos = [0,0]
 	# diagonals
 	if (up && left): dpos = calculate_movement(delta, Global.NORTHWEST)
