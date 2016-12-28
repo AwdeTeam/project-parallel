@@ -3,11 +3,12 @@ extends Node2D
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-var Global = load("scripts/Global.gd")
+var Global
 
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
+	Global = get_node("/root/Global")
 	
 	var worldthing = preload("res://scenes/world.tscn").instance()
 	get_node("world").add_child(worldthing)
@@ -28,6 +29,7 @@ func _input(ev):
   pass
 
 func end_turn():
+	#Global = get_node("/root/Global")
 	if(Global.player_turn == 1):
 		Global.player_turn = 2
 	else:
