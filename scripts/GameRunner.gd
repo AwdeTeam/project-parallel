@@ -7,7 +7,6 @@ var Global
 
 var world
 
-var exit_button_was_pressed = false
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -42,7 +41,6 @@ func _input(ev):
 	if(ev.is_action_pressed("game_endturn")):
 		end_turn()
 	elif(ev.is_action_pressed("game_close") and Global.game_running):
-		#exit_button_was_pressed = true
 		Global.game_running = false
 		get_tree().quit()
 	elif(ev.is_action_pressed("game_split")):
@@ -60,6 +58,8 @@ func _input(ev):
 		Global.get_active_player().trap_selection = 1
 	elif (ev.is_action_pressed("game_choose_2")):
 		Global.get_active_player().trap_selection = 2
+	elif (ev.is_action_pressed("game_choose_3")):
+		Global.get_active_player().trap_selection = 3
   pass
 
 func end_turn():

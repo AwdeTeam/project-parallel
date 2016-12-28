@@ -13,14 +13,15 @@ var has_output = false
 
 var parent_player
 
+var instance_index
+
 func _ready():
 	Global = get_node("/root/Global")
 	
 	type = Global.trap_type_being_added
 	parent_player = Global.player_adding_trap
 	Global.trap_instances.append(self)
-	
-	
+	instance_index = Global.trap_instances.size() - 1
 	
 	set_fixed_process(true)
 	set = false
@@ -46,6 +47,16 @@ func activate_trap(body):
 		var pos = Global.get_gridsquare_pixels(output_gridsquare[0], output_gridsquare[1])
 		var vector_pos = Vector2(pos[0], pos[1])
 		body.set_pos(vector_pos)
+	
+	if (self.type == "proxbomb"):
+		if (body.parent_player.instances.size() > 1):
+			body.remove()
+			Global.remove_trap(instance_index)
+			return
+
+func remove():
+	#get_parent().remove_child(get_node("trap"))
+	pass
 
 func _set():
 	Global.acting = false

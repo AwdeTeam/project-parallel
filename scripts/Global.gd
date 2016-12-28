@@ -15,6 +15,7 @@ const SPLIT_PENALTY = 1 # amount of time deducted when you split
 
 const PORTAL_IN = 1
 const PORTAL_OUT = 2
+const PROX_BOMB = 3
 
 # player turn
 var player_turn = 0 # 0 = none (in between), 1 = player 1, 2 = player 2
@@ -52,3 +53,16 @@ static func get_active_player():
 		return Global.player_1
 	elif (Global.player_turn == 2):
 		return Global.player_2
+
+static func remove_trap(index):
+	Global.trap_instances[index].remove()
+	Global.trap_instances.remove(index)
+	Global.refresh_trap_indicies()
+
+static func refresh_trap_indicies():
+	print("inside refreshing trap indicies....")
+	var counter = 0
+	for trap in Global.trap_instances:
+		trap.instance_index = counter
+		counter += 1
+	print("finished refreshing")
