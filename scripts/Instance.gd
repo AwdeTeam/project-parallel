@@ -23,6 +23,9 @@ func _ready():
 func focus():
 	get_node("instance_camera").make_current()
 
+func ignore_collision_body(body):
+	self.add_collision_exception_with(body)
+
 func _fixed_process(delta):
 	if(Global.player_turn != self.parent_player.player_id):
 		return

@@ -8,13 +8,13 @@
 custom_solver_bias = 0.0
 extents = Vector2( 80, 80 )
 
-[node name="container_1" type="Node2D"]
+[node name="container_2" type="Node2D"]
 
 [node name="kinematic_container" type="KinematicBody2D" parent="."]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 81.3964, 82.9037 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -24,15 +24,18 @@ script/script = ExtResource( 1 )
 [node name="graphic" type="Sprite" parent="kinematic_container"]
 
 texture = ExtResource( 2 )
+offset = Vector2( 80, 80 )
 
 [node name="collider" type="CollisionShape2D" parent="kinematic_container"]
 
+transform/pos = Vector2( 81.3964, 82.9037 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
 [node name="instance_camera" type="Camera2D" parent="kinematic_container"]
 
+transform/pos = Vector2( 79.8891, 78.3817 )
 anchor_mode = 1
 rotating = false
 current = false
