@@ -14,8 +14,8 @@ func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
-	if(Global.player_turn != self.parent_player.player_id):
-		return
+	#if(Global.player_turn != self.parent_player.player_id):
+	#	return
 	# determine if must move
 	var up = Input.is_action_pressed("game_up")
 	var down = Input.is_action_pressed("game_down")
