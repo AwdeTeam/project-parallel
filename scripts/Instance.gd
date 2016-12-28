@@ -13,6 +13,9 @@ func _ready():
 	get_node("instance_camera").make_current()
 	set_fixed_process(true)
 
+func focus():
+	get_node("instance_camera").make_current()
+
 func _fixed_process(delta):
 	#if(Global.player_turn != self.parent_player.player_id):
 	#	return

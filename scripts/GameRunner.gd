@@ -32,8 +32,11 @@ func end_turn():
 	#Global = get_node("/root/Global")
 	if(Global.player_turn == 1):
 		Global.player_turn = 2
+		Global.player_2.focus()
 	else:
 		Global.player_turn = 1
+		Global.player_1.focus()
+	
 
 func add_player():
 	var PlayerClass = load("scripts/Player.gd")
