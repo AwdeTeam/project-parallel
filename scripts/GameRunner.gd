@@ -23,14 +23,16 @@ func _ready():
 	set_process_input(true)
 	
 	world.add_instance(0, 0, 1)
-	world.add_instance(10,5, 2)
+	world.add_instance(10, 5, 2)
 	#world.add_instance(0, 0, 2)
 	#world.add_instance(0, 1, 2)
 	#world.add_instance(1, 1, 2)
 	
 	Global.player_1.focus()
 	
-	world.add_trap(1,1, 1, "portal_in")
+	world.add_trap(2, 2, 1, "portal_in")
+	
+	Global.trap_instances[0]._set()
 
 	#Global.player_1_instances[0].focus()
 	#Global.player_1_instances[0].ignore_collision_body(Global.player_2_instances[0])
