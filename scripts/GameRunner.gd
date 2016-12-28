@@ -16,7 +16,7 @@ func _ready():
 	world = preload("res://scenes/world.tscn").instance()
 	get_node("world").add_child(world)
 	
-	var guithing = preload("res://scenes/ui.tscn").instance()
+	var guithing = preload("res://scenes/ui/ui.tscn").instance()
 	get_node("gui").add_child(guithing)
 	
 	set_process_input(true)
