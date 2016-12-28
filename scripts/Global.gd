@@ -32,6 +32,7 @@ var trap_instances = []
 
 var acting = false
 
+var game # this is the game runner!!!
 var Global
 func _init():
 	Global = get_node("/root/Global")

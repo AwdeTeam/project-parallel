@@ -11,6 +11,7 @@ func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	Global = get_node("/root/Global")
+	Global.game = self
 	create_players()
 	
 	world = preload("res://scenes/world.tscn").instance()
