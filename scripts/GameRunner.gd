@@ -67,9 +67,11 @@ func end_turn():
 	if(Global.player_turn == 1):
 		Global.player_turn = 2
 		Global.player_2.focus()
+		Global.player_2.subtract_time(-(Global.TURN_TIME_GAIN - (Global.TURN_TIME_INSTANCE_PENALTY * (Global.player_2.instances.size() - 1))))
 	else:
 		Global.player_turn = 1
 		Global.player_1.focus()
+		Global.player_1.subtract_time(-(Global.TURN_TIME_GAIN - (Global.TURN_TIME_INSTANCE_PENALTY * (Global.player_1.instances.size() - 1))))
 
 func split(player_id, instance_id):
 	var player
