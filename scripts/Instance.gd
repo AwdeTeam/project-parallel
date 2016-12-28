@@ -1,24 +1,35 @@
 extends KinematicBody2D
 
-var Global = load("scripts/Global.gd")
-#var PlayerClass = load("scripts/Player.gd")
-var parent_player
+var Global
+var PlayerClass = load("scripts/Player.gd")
+var parent_player = PlayerClass.new(500, 1)
 
-func _init(parent):
-	self.parent_player = parent
+func _init():
+	pass
 
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	get_node("instance_camera").make_current()
+	Global = get_node("/root/Global")
+	#parent_player = Global.player_1
+	#get_node("instance_camera").make_current()
 	set_fixed_process(true)
+	
+	print(str(Global.player_adding_instance))
+	if (Global.player_adding_instance == 1):
+		print("adding instance to dictionary 1")
+		parent_player = Global.player_1
+		Global.player_1_instances.append(self)
+	elif (Global.player_adding_instance == 2):
+		parent_player = Global.player_2
+		Global.player_2_instances.append(self)
 
 func focus():
 	get_node("instance_camera").make_current()
 
 func _fixed_process(delta):
-	#if(Global.player_turn != self.parent_player.player_id):
-	#	return
+	if(Global.player_turn != self.parent_player.player_id):
+		return
 	# determine if must move
 	var up = Input.is_action_pressed("game_up")
 	var down = Input.is_action_pressed("game_down")
