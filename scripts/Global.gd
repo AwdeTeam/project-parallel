@@ -28,6 +28,8 @@ var currently_active_instance # this is the actual instance reference
 
 var game_running = true
 
+var acting = false
+
 var Global
 func _init():
 	Global = get_node("/root/Global")

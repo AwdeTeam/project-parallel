@@ -13,6 +13,9 @@ func _ready():
 	get_node("map_container").add_child(mapthing)
 	
 	
+func add_trap():
+	
+
 # assume that x and y are grid squares, not pixels
 func add_instance(x, y, player_id):
 	Global.player_adding_instance = player_id
