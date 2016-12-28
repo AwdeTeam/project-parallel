@@ -12,6 +12,9 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
+	if (Global.game_running == false):
+		set_process(false)
+		return
 	get_fps -= delta
 	if (get_fps <= 0):
 		var fps = 1 / delta
