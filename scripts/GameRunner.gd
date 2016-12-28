@@ -28,6 +28,8 @@ func _ready():
 	#world.add_instance(1, 1, 2)
 	
 	Global.player_1.focus()
+	
+	world.add_trap(1,1, 1, "portal_in")
 
 	#Global.player_1_instances[0].focus()
 	#Global.player_1_instances[0].ignore_collision_body(Global.player_2_instances[0])

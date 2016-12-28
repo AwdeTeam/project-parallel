@@ -8,6 +8,9 @@ var Global
 
 func _ready():
 	Global = get_node("/root/Global")
+	
+	Global.trap_instances.append(self)
+	
 	set_fixed_process(true)
 	set = false
 	pass

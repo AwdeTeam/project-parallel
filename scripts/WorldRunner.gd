@@ -12,9 +12,21 @@ func _ready():
 	var mapthing = preload("res://scenes/maps/testmap/testmap.tscn").instance()
 	get_node("map_container").add_child(mapthing)
 	
+
+# x and y are grid squares
+func add_trap(x, y, player_id, type):
 	
-func add_trap():
+	var pos = Global.get_gridsquare_pixels(x, y)
 	
+	var vector_pos = Vector2(pos[0], pos[1])
+	
+	# NOTE: since dynamic, can't preload (can change if speed issues, just make if elif based on type)
+	var trapinstance = load("res://scenes/traps/" + str(type) + ".tscn").instance()
+	get_node("map_container").add_child(trapinstance)
+	
+	trapinstance.get_node("trap").set_pos(vector_pos)
+	
+	pass
 
 # assume that x and y are grid squares, not pixels
 func add_instance(x, y, player_id):
