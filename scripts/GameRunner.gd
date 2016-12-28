@@ -44,6 +44,10 @@ func _input(ev):
 		elif (Global.player_turn == 2):
 			active_index = Global.player_2.active_instance_index
 		split(Global.player_turn, active_index)
+	elif(ev.is_action_pressed("game_forward_instance")):
+		Global.get_active_player().focus_next()
+	elif(ev.is_action_pressed("game_backward_instance")):
+		Global.get_active_player().focus_prev()
   pass
 
 func end_turn():

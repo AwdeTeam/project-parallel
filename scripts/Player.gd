@@ -32,8 +32,13 @@ func focus():
 
 func focus_next():
 	active_instance_index += 1
+	if (active_instance_index >= instances.size()): active_instance_index = 0
 	instances[active_instance_index].focus()
 
+func focus_prev():
+	active_instance_index -= 1
+	if (active_instance_index < 0): active_instance_index = instances.size() - 1
+	instances[active_instance_index].focus()
 
 func focus_last():
 	active_instance_index = instances.size() - 1

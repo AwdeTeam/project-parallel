@@ -26,8 +26,19 @@ var player_adding_instance # this is player id, not instance
 
 var currently_active_instance # this is the actual instance reference
 
+var Global
+func _init():
+	Global = get_node("/root/Global")
+
+
 static func get_gridsquare_pixels(x, y):
 	return [x*160, y*160]
 
 static func get_pixels_gridsquare(x, y):
 	return [round(x/160), round(y/160)]
+
+static func get_active_player():
+	if (Global.player_turn == 1):
+		return Global.player_1
+	elif (Global.player_turn == 2):
+		return Global.player_2
