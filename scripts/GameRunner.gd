@@ -5,21 +5,29 @@ extends Node2D
 # var b = "textvar"
 var Global
 
+var world
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	Global = get_node("/root/Global")
 	
-	var worldthing = preload("res://scenes/world.tscn").instance()
-	get_node("world").add_child(worldthing)
+	world = preload("res://scenes/world.tscn").instance()
+	get_node("world").add_child(world)
 	
 	var guithing = preload("res://scenes/ui.tscn").instance()
 	get_node("gui").add_child(guithing)
 	
 	set_process_input(true)
 	
+	start_game()
 	
 	pass
+	
+func start_game():
+	print("starting game...")
+	self.create_players()
+	self.create_initial_instances()
 
 func _input(ev):
 	if(ev.is_action_pressed("game_endturn")):
@@ -29,16 +37,26 @@ func _input(ev):
   pass
 
 func end_turn():
-	#Global = get_node("/root/Global")
 	if(Global.player_turn == 1):
 		Global.player_turn = 2
 		Global.player_2.focus()
+		
+		
 	else:
 		Global.player_turn = 1
 		Global.player_1.focus()
 	
 
-func add_player():
+func create_players():
+	print("creating players...")
 	var PlayerClass = load("scripts/Player.gd")
-	self.Global.player_1 = PlayerClass.new(500, 1)
-	self.Global.player_2 = PlayerClass.new(500, 2)
+	Global.player_1 = PlayerClass.new(500, 1, self.world)
+	Global.player_1.callout()
+	Global.player_2 = PlayerClass.new(500, 2, self.world)
+
+func create_initial_instances():
+	print("creating initial instances...")
+	Global.player_1.create_instance()
+	Global.player_2.create_instance()
+	Global.player_1.focus()
+	pass

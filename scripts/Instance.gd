@@ -1,17 +1,36 @@
 extends KinematicBody2D
 
-var Global = load("scripts/Global.gd")
-#var PlayerClass = load("scripts/Player.gd")
+var Global
 var parent_player
 
-func _init(parent):
+#func _init(parent):
+func _init():
+	#self.parent_player = parent
+	print("instance is initializing...")
+	pass
+
+func custom_init(parent):
 	self.parent_player = parent
 
 func _ready():
 	# Called every time the node is added to the scene.
-	# Initialization here
-	get_node("instance_camera").make_current()
+	# Initialization her
+	
+	print("INSTANCE IS READY...")
+	
+	Global = get_node("/root/Global")
+	
+	
+	self.parent_player = Global.instance_pass_data["player"]
+	Global.instance_passback = self
+	
+	print("Instances parent player id: " + str(self.parent_player.player_id))
+	
+	#get_node("instance_camera").make_current()
 	set_fixed_process(true)
+
+func callout():
+	print("Yes, this is an instance here")
 
 func focus():
 	get_node("instance_camera").make_current()
