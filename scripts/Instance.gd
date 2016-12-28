@@ -5,6 +5,7 @@ var PlayerClass = load("scripts/Player.gd")
 var parent_player
 
 var elapsed_time
+var lbl_counter
 
 func _init():
 	pass
@@ -28,6 +29,8 @@ func _ready():
 	for instance in parent_player.instances:
 		self.ignore_collision_body(instance)
 		instance.ignore_collision_body(self)
+		
+	lbl_counter = get_node("counter")
 
 func focus():
 	get_node("instance_camera").make_current()
@@ -36,11 +39,22 @@ func focus():
 func ignore_collision_body(body):
 	self.add_collision_exception_with(body)
 
+func get_gridsquare():
+	var pos = self.get_pos()
+	var gridsquare = Global.get_pixels_gridsquare(pos.x, pos.y)
+	return gridsquare
+
 func _fixed_process(delta):
 	if(Global.player_turn != self.parent_player.player_id):
 		return
 	if (Global.currently_active_instance != self):
 		return
+	
+	
+
+	elapsed_time += delta
+	lbl_counter.set_text(str(round(elapsed_time)))
+
 	# determine if must move
 	var up = Input.is_action_pressed("game_up")
 	var down = Input.is_action_pressed("game_down")

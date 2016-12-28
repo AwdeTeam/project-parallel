@@ -19,9 +19,9 @@ var player_2
 var player_1_instances = []
 var player_2_instances = []
 
-var player_adding_instance
+var player_adding_instance # this is player id, not instance
 
-var currently_active_instance
+var currently_active_instance # this is the actual instance reference
 
 static func get_gridsquare_pixels(x, y):
 	return [x*160, y*160]

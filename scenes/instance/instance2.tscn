@@ -53,4 +53,21 @@ drag_margin/top = 0.1
 drag_margin/right = 0.1
 drag_margin/bottom = 0.1
 
+[node name="counter" type="Label" parent="kinematic_container"]
+
+rect/scale = Vector2( 4, 4 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 15.0
+margin/top = 46.0
+margin/right = 47.0
+margin/bottom = 62.0
+text = "0"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 
