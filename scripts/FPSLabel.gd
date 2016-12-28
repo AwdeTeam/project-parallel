@@ -16,5 +16,5 @@ func _process(delta):
 	if (get_fps <= 0):
 		var fps = 1 / delta
 		fps = round(fps)
-		set_text(str(fps) + " fps")
+		#set_text(str(fps) + " fps")
 		get_fps = .25
