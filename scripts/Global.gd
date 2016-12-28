@@ -13,6 +13,8 @@ const NORTHWEST = 7
 
 const SPLIT_PENALTY = 1 # amount of time deducted when you split
 
+const PORTAL_IN = 1
+const PORTAL_OUT = 2
 
 # player turn
 var player_turn = 0 # 0 = none (in between), 1 = player 1, 2 = player 2
@@ -30,6 +32,7 @@ var game_running = true
 
 var trap_instances = []
 var trap_type_being_added
+var player_adding_trap # this is instance
 
 var acting = false
 

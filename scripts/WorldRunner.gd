@@ -18,6 +18,10 @@ func add_trap(x, y, player_id, type):
 	print(str(x) + ", " + str(y))
 	
 	Global.trap_type_being_added = type
+	if (player_id == 1):
+		Global.player_adding_trap = Global.player_1
+	elif (player_id == 2):
+		Global.player_adding_trap = Global.player_2
 	var pos = Global.get_gridsquare_pixels(x, y)
 	
 	var vector_pos = Vector2(pos[0], pos[1])
@@ -28,7 +32,6 @@ func add_trap(x, y, player_id, type):
 	
 	trapinstance.get_node("trap").set_pos(vector_pos)
 	
-	pass
 
 # assume that x and y are grid squares, not pixels
 func add_instance(x, y, player_id):

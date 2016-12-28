@@ -11,7 +11,11 @@ var player_id = 0
 var instances = []
 var active_instance_index = 0
 
+var trap_selection = 1
+
 var Global
+
+var uncompleted_portals = []
 
 func _init(speed, player, Global):
 	self.speed = speed

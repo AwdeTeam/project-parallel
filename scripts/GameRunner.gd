@@ -53,6 +53,10 @@ func _input(ev):
 		Global.get_active_player().focus_next()
 	elif(ev.is_action_pressed("game_backward_instance")):
 		Global.get_active_player().focus_prev()
+	elif (ev.is_action_pressed("game_choose_1")):
+		Global.get_active_player().trap_selection = 1
+	elif (ev.is_action_pressed("game_choose_2")):
+		Global.get_active_player().trap_selection = 2
   pass
 
 func end_turn():
