@@ -32,10 +32,7 @@ func fetch_player_times():
 func determine_text(number):
 	var minutes = int(floor(number / 60))
 	var seconds = number - (minutes*60)
-	
-	print("determing text of " + str(number) + " seconds")
-	print("minutes: " + str(minutes) + " seconds: " + str(seconds))
-	
+
 	var minutes_text = str(minutes)
 	var seconds_text = str(seconds)
 	if (seconds < 10): seconds_text = "0" + seconds_text

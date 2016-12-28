@@ -87,6 +87,23 @@ func _fixed_process(delta):
 		var collision_normal = get_collision_normal()
 		movement = collision_normal.slide(movement)
 		move(movement)
+	
+	# check if in gridsquare of another instance
+	if (self.elapsed_time > 2):
+		var current_gridsquare = self.get_gridsquare()
+		for instance in parent_player.instances:
+			if (instance == self): continue # don't check with self!!
+			var instance_gridsquare = instance.get_gridsquare()
+			
+			# if same, trigger a merge
+			if (instance_gridsquare[0] == current_gridsquare[0] and instance_gridsquare[1] == current_gridsquare[1]):
+				merge(instance)
+				break
+
+# merges this instance into the passed instance
+func merge(instance):
+	
+	pass
 
 func calculate_movement(delta, direction):
 	# Calculate cardinal distance and diaganol distance
