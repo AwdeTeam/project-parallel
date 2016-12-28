@@ -8,8 +8,9 @@ var instance_index # index in players instance array
 
 var elapsed_time
 var lbl_counter
+var lbl_health
 
-var health # TODO: not implemented yet
+var health = 8 # TODO: not implemented yet
 
 
 var action_button_was_pressed = false
@@ -39,6 +40,7 @@ func _ready():
 		instance.ignore_collision_body(self)
 		
 	lbl_counter = get_node("counter")
+	lbl_health = get_node("health")
 
 func focus():
 	get_node("instance_camera").make_current()
@@ -57,6 +59,10 @@ func _fixed_process(delta):
 	if (Global.game_running == false): 
 		set_process(false)
 		return
+	
+	lbl_health.set_text(str(round(health)))
+	
+	
 	if(Global.player_turn != self.parent_player.player_id):
 		return
 	if (Global.currently_active_instance != self):
@@ -66,7 +72,7 @@ func _fixed_process(delta):
 
 	elapsed_time += delta
 	lbl_counter.set_text(str(round(elapsed_time)))
-
+	
 	# determine if must move
 	var up = Input.is_action_pressed("game_up")
 	var down = Input.is_action_pressed("game_down")
@@ -152,9 +158,22 @@ func merge(instance):
 	var smaller_time = smaller_instance.elapsed_time
 	parent_player.subtract_time(-smaller_time)
 	
+	# update health of larger instance
+	var num_of_instances = parent_player.instances.size() - 1
+	if (num_of_instances == 1):
+		larger_instance.health = 8
+	elif (num_of_instances == 2):
+		larger_instance.health = 4
+	elif (num_of_instances == 3 or num_of_instances == 4):
+		larger_instance.health = 2
+	else:
+		larger_instance.health = 1
+	
 	# remove smaller instance
 	smaller_instance.remove()
 	larger_instance.focus()
+	
+	
 
 func remove():
 	parent_player.instances.remove(self.instance_index)

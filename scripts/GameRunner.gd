@@ -83,7 +83,10 @@ func split(player_id, instance_id):
 	
 	#world.add_instance(gridsquare[0], gridsquare[1], Global.player_turn)
 	world.add_instance(gridsquare[0], gridsquare[1], player_id)
+	player.instances[instance_id].health = ceil(player.instances[instance_id].health/2)
 	player.focus_last()
+	
+	player.instances[player.instances.size() - 1].health = player.instances[instance_id].health
 	#if (Global.player_turn == 1):
 		#Global.player_1.focus_next()
 	#elif (Global.player_turn == 2):

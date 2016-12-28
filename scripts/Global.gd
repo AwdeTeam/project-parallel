@@ -13,6 +13,8 @@ const NORTHWEST = 7
 
 const SPLIT_PENALTY = 1 # amount of time deducted when you split
 
+const PROX_BOMB_DMG = 2
+
 const PORTAL_IN = 1
 const PORTAL_OUT = 2
 const PROX_BOMB = 3
