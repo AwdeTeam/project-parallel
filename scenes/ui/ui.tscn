@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://scripts/Counters.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/Game_UI.png" type="Texture" id=2]
 [ext_resource path="res://scripts/FPSLabel.gd" type="Script" id=3]
+[ext_resource path="res://res/turntableaux-regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 70
+font/use_mipmaps = true
+font/use_filter = true
+font/font = ExtResource( 4 )
+fallback/0 = ExtResource( 4 )
 
 [node name="container" type="Node2D"]
 
@@ -35,15 +44,15 @@ script/script = ExtResource( 3 )
 
 [node name="lbl_counter_1" type="Label" parent="."]
 
-rect/scale = Vector2( 5, 5 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 26.0
-margin/top = 18.0
-margin/right = 66.0
-margin/bottom = 32.0
+margin/left = 36.0
+margin/top = -4.0
+margin/right = 215.0
+margin/bottom = 141.0
+custom_fonts/font = SubResource( 1 )
 text = "2:00"
 align = 1
 percent_visible = 1.0
@@ -52,15 +61,15 @@ max_lines_visible = -1
 
 [node name="lbl_counter_2" type="Label" parent="."]
 
-rect/scale = Vector2( 5, 5 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 1374.0
-margin/top = 18.0
-margin/right = 1414.0
-margin/bottom = 32.0
+margin/left = 1384.0
+margin/top = -2.0
+margin/right = 1563.0
+margin/bottom = 143.0
+custom_fonts/font = SubResource( 1 )
 text = "2:00"
 align = 1
 percent_visible = 1.0
