@@ -38,7 +38,12 @@ func _input(ev):
 	elif(ev.is_action_pressed("game_close")):
 		get_tree().quit()
 	elif(ev.is_action_pressed("game_split")):
-		split()
+		var active_index
+		if (Global.player_turn == 1):
+			active_index = Global.player_1.active_instance_index
+		elif (Global.player_turn == 2):
+			active_index = Global.player_2.active_instance_index
+		split(Global.player_turn, active_index)
   pass
 
 func end_turn():
@@ -50,17 +55,23 @@ func end_turn():
 		Global.player_turn = 1
 		Global.player_1.focus()
 
-func split():
+func split(player_id, instance_id):
+	var player
+	if (player_id == 1): player = Global.player_1
+	elif (player_id == 2): player = Global.player_2
+	
 	# get position of active
-	var pos = Global.currently_active_instance.get_pos()
+	#var pos = Global.currently_active_instance.get_pos()
+	var pos = player.instances[instance_id].get_pos()
 	var gridsquare = Global.get_pixels_gridsquare(pos.x, pos.y)
 	
-	world.add_instance(gridsquare[0], gridsquare[1], Global.player_turn)
-	if (Global.player_turn == 1):
-		Global.player_1.focus_next()
-	elif (Global.player_turn == 2):
-		Global.player_2.focus_next()
-	pass
+	#world.add_instance(gridsquare[0], gridsquare[1], Global.player_turn)
+	world.add_instance(gridsquare[0], gridsquare[1], player_id)
+	player.focus_last()
+	#if (Global.player_turn == 1):
+		#Global.player_1.focus_next()
+	#elif (Global.player_turn == 2):
+		#Global.player_2.focus_next()
 
 func create_players():
 	var PlayerClass = load("scripts/Player.gd")

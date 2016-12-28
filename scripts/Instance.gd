@@ -9,6 +9,8 @@ var instance_index # index in players instance array
 var elapsed_time
 var lbl_counter
 
+var health # TODO: not implemented yet
+
 func _init():
 	pass
 

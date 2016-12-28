@@ -36,7 +36,7 @@ func focus_next():
 
 
 func focus_last():
-	active_instance_index = instances.count() - 1
+	active_instance_index = instances.size() - 1
 	instances[active_instance_index].focus()
 	pass
 	
