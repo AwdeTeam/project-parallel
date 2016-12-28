@@ -14,6 +14,7 @@ const NORTHWEST = 7
 const SPLIT_PENALTY = 1 # amount of time deducted when you split
 
 const PROX_BOMB_DMG = 2
+const ATTACK_DMG = 1
 
 const PORTAL_IN = 1
 const PORTAL_OUT = 2
@@ -55,6 +56,12 @@ static func get_active_player():
 		return Global.player_1
 	elif (Global.player_turn == 2):
 		return Global.player_2
+
+static func get_inactive_player():
+	if (Global.player_turn == 1):
+		return Global.player_2
+	elif (Global.player_turn == 2):
+		return Global.player_1
 
 static func remove_trap(index):
 	Global.trap_instances[index].remove()

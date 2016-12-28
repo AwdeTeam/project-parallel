@@ -14,6 +14,7 @@ var health = 8 # TODO: not implemented yet
 
 
 var action_button_was_pressed = false
+var attack_button_was_pressed = false
 
 func _init():
 	pass
@@ -81,6 +82,22 @@ func _fixed_process(delta):
 	
 	# check if placing trao
 	var act = Input.is_action_pressed("game_action")
+	
+	var attack = Input.is_action_pressed("game_attack")
+	
+	if (!attack): attack_button_was_pressed = false
+	
+	if (attack and !attack_button_was_pressed):
+		attack_button_was_pressed = true
+		
+		# check if enemy instances in range
+		for instance in Global.get_inactive_player().instances:
+			var instance_sqr = instance.get_gridsquare()
+			var this_sqr = self.get_gridsquare()
+			
+			if (abs(instance_sqr[0] - this_sqr[0]) <= 1 and abs(instance_sqr[1] - this_sqr[1]) <= 1):
+				instance.damage(Global.ATTACK_DMG)
+	
 	if (!act): action_button_was_pressed = false
 	if (act and !action_button_was_pressed):
 		action_button_was_pressed = true
@@ -139,6 +156,15 @@ func _fixed_process(delta):
 				merge(instance)
 				break
 
+func damage(amount):
+	self.health -= amount
+	if (self.health <= 0):
+		if (parent_player.instances.size() > 1):
+			self.remove()
+		else:
+			self.health = 0
+			parent_player.subtract_time(amount)
+
 # merges this instance into the passed instance
 func merge(instance):
 	# compare instance times
@@ -172,13 +198,11 @@ func merge(instance):
 	# remove smaller instance
 	smaller_instance.remove()
 	larger_instance.focus()
-	
-	
 
 func remove():
 	parent_player.instances.remove(self.instance_index)
 	parent_player.refresh_instance_indices()
-	parent_player.focus_next()
+	if (parent_player.player_id == Global.player_turn): parent_player.focus_next()
 	get_parent().remove_child(self)
 
 func calculate_movement(delta, direction):
