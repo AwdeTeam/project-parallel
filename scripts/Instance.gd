@@ -159,6 +159,7 @@ func merge(instance):
 func remove():
 	parent_player.instances.remove(self.instance_index)
 	parent_player.refresh_instance_indices()
+	parent_player.focus_next()
 	get_parent().remove_child(self)
 
 func calculate_movement(delta, direction):

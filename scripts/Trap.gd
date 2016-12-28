@@ -55,8 +55,8 @@ func activate_trap(body):
 			return
 
 func remove():
-	#get_parent().remove_child(get_node("trap"))
-	pass
+	remove_child(get_node("graphic"))
+	remove_child(get_node("collider"))
 
 func _set():
 	Global.acting = false

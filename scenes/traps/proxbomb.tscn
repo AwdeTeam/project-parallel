@@ -27,7 +27,7 @@ script/script = ExtResource( 1 )
 texture = ExtResource( 2 )
 offset = Vector2( 80, 80 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="trap"]
+[node name="collider" type="CollisionShape2D" parent="trap"]
 
 transform/pos = Vector2( 80, 80 )
 shape = SubResource( 1 )
