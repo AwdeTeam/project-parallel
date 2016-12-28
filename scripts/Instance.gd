@@ -51,6 +51,9 @@ func get_gridsquare():
 	return gridsquare
 
 func _fixed_process(delta):
+	if (Global.game_running == false): 
+		set_process(false)
+		return
 	if(Global.player_turn != self.parent_player.player_id):
 		return
 	if (Global.currently_active_instance != self):

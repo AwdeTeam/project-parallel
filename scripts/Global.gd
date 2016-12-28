@@ -26,10 +26,11 @@ var player_adding_instance # this is player id, not instance
 
 var currently_active_instance # this is the actual instance reference
 
+var game_running = true
+
 var Global
 func _init():
 	Global = get_node("/root/Global")
-
 
 static func get_gridsquare_pixels(x, y):
 	return [x*160, y*160]

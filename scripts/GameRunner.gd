@@ -36,6 +36,7 @@ func _input(ev):
 	if(ev.is_action_pressed("game_endturn")):
 		end_turn()
 	elif(ev.is_action_pressed("game_close")):
+		Global.game_running = false
 		get_tree().quit()
 	elif(ev.is_action_pressed("game_split")):
 		var active_index

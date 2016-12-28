@@ -18,6 +18,9 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
+	if (Global.game_running == false):
+		set_process(false)
+		return
 	fetch_player_times()
 	lbl_counter_1.set_text(counter_1_text)
 	lbl_counter_2.set_text(counter_2_text)
