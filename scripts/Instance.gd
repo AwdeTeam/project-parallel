@@ -74,8 +74,10 @@ func _fixed_process(delta):
 	var act = Input.is_action_pressed("game_action")
 	
 	if (act):
-		Global.acting = true
-		
+		#Global.acting = true
+		#print(str(get_viewport().get_mouse_pos().x + get_pos().x) + ", " + str(get_viewport().get_mouse_pos().y + get_pos().y))
+		var sqr = Global.get_pixels_gridsquare(get_viewport().get_mouse_pos().x, get_viewport().get_mouse_pos().y)
+		Global.game.world.add_trap(sqr[0], sqr[1], self.parent_player.player_id, "portal_in")
 	
 	var dpos = [0,0]
 	# diagonals

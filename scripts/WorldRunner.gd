@@ -15,7 +15,7 @@ func _ready():
 
 # x and y are grid squares
 func add_trap(x, y, player_id, type):
-	
+	print(str(x) + ", " + str(y))
 	var pos = Global.get_gridsquare_pixels(x, y)
 	
 	var vector_pos = Vector2(pos[0], pos[1])

@@ -1,20 +1,12 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://scripts/Instance.gd" type="Script" id=1]
 [ext_resource path="res://scenes/instance/testgraphic.png" type="Texture" id=2]
-[ext_resource path="res://res/turntableaux-regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 80, 80 )
-
-[sub_resource type="DynamicFont" id=2]
-
-font/size = 100
-font/use_mipmaps = false
-font/use_filter = true
-font/font = ExtResource( 3 )
 
 [node name="container_2" type="Node2D"]
 
@@ -63,15 +55,15 @@ drag_margin/bottom = 0.1
 
 [node name="counter" type="Label" parent="kinematic_container"]
 
+rect/scale = Vector2( 4, 4 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 71.0
-margin/top = -1.0
-margin/right = 103.0
-margin/bottom = 120.0
-custom_fonts/font = SubResource( 2 )
+margin/left = 15.0
+margin/top = 46.0
+margin/right = 47.0
+margin/bottom = 62.0
 text = "0"
 align = 1
 percent_visible = 1.0
