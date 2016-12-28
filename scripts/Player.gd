@@ -15,6 +15,10 @@ var trap_selection = 1
 
 var Global
 
+var num_portals_in
+var num_portals_out
+var num_prox_bombs
+
 var uncompleted_portals = []
 
 func _init(speed, player, Global):
@@ -23,6 +27,9 @@ func _init(speed, player, Global):
 	self.Global = Global
 	self.time = 120 + Global.SPLIT_PENALTY
 	self.actual_time = self.time
+	self.num_portals_in = Global.START_COUNT_PORTAL
+	self.num_portals_out = Global.START_COUNT_PORTAL
+	self.num_prox_bombs = Global.START_COUNT_PROX_BOMB
 
 func refresh_instance_indices():
 	var index = 0

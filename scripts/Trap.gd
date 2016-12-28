@@ -8,7 +8,10 @@ var Global
 
 var type
 
+
+var uses
 var output_gridsquare
+var output_reference
 var has_output = false
 
 var parent_player
@@ -23,6 +26,10 @@ func _ready():
 	Global.trap_instances.append(self)
 	instance_index = Global.trap_instances.size() - 1
 	
+	uses = Global.PORTAL_USES
+	#if (type == Global.PORTAL_IN):
+	#	parent_player.
+	
 	set_fixed_process(true)
 	set = false
 	pass
@@ -31,6 +38,7 @@ func set_portal_output(output):
 	print("Attempting to set output....")
 	has_output = true
 	output_gridsquare = output.get_gridsquare()
+	output_reference = output
 
 func get_gridsquare():
 	var pixel_pos = self.get_pos()
@@ -50,13 +58,24 @@ func activate_trap(body):
 		var pos = Global.get_gridsquare_pixels(output_gridsquare[0], output_gridsquare[1])
 		var vector_pos = Vector2(pos[0], pos[1])
 		body.set_pos(vector_pos)
-	
+		uses -= 1
+		if (uses <= 0):
+			output_reference.remove()
+			self.remove()
 	if (self.type == "proxbomb"):
 		body.damage(Global.PROX_BOMB_DMG)
 		Global.remove_trap(instance_index)
 		return
 
 func remove():
+	
+	if (self.type == "portal_in"):
+		self.parent_player.num_portals_in += 1
+	elif (self.type == "portal_out"):
+		self.parent_player.num_portals_out += 1
+	elif (self.type == "proxbomb"):
+		self.parent_player.num_prox_bombs += 1
+	
 	remove_child(get_node("graphic")) #since apparently can't just remove self node......
 	remove_child(get_node("collider"))
 

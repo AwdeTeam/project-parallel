@@ -23,6 +23,11 @@ const PROX_BOMB = 3
 const TURN_TIME_GAIN = 15
 const TURN_TIME_INSTANCE_PENALTY = 1
 
+const START_COUNT_PROX_BOMB = 4
+const START_COUNT_PORTAL = 4
+
+const PORTAL_USES = 4
+
 # player turn
 var player_turn = 0 # 0 = none (in between), 1 = player 1, 2 = player 2
 var player_1

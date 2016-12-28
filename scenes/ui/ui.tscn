@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scripts/Counters.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/Game_UI.png" type="Texture" id=2]
@@ -12,6 +12,20 @@ font/use_mipmaps = true
 font/use_filter = true
 font/font = ExtResource( 4 )
 fallback/0 = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+
+font/size = 30
+font/use_mipmaps = false
+font/use_filter = true
+font/font = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+
+font/size = 80
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 4 )
 
 [node name="container" type="Node2D"]
 
@@ -72,6 +86,71 @@ margin/bottom = 143.0
 custom_fonts/font = SubResource( 1 )
 text = "2:00"
 align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="lbl_active" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1443.0
+margin/top = 795.0
+margin/right = 1555.0
+margin/bottom = 844.0
+custom_fonts/font = SubResource( 2 )
+text = "Active"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="lbl_portals_in" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1342.0
+margin/top = 780.0
+margin/right = 1382.0
+margin/bottom = 877.0
+custom_fonts/font = SubResource( 3 )
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="lbl_portals_out" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1374.0
+margin/top = 687.0
+margin/right = 1414.0
+margin/bottom = 784.0
+custom_fonts/font = SubResource( 3 )
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="lbl_prox" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1444.0
+margin/top = 614.0
+margin/right = 1484.0
+margin/bottom = 711.0
+custom_fonts/font = SubResource( 3 )
+text = "0"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

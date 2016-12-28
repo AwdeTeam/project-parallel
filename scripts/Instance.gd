@@ -114,6 +114,15 @@ func _fixed_process(delta):
 		if (parent_player.trap_selection == Global.PORTAL_IN): type = "portal_in"
 		elif (parent_player.trap_selection == Global.PORTAL_OUT): type = "portal_out"
 		elif (parent_player.trap_selection == Global.PROX_BOMB): type = "proxbomb"
+		
+		if (type == "portal_in" and parent_player.num_portals_in <= 0): return
+		if (type == "portal_out" and parent_player.num_portals_out <= 0): return
+		if (type == "proxbomb" and parent_player.num_prox_bombs <= 0): return
+		
+		if (type == "portal_in"): parent_player.num_portals_in -= 1
+		elif (type == "portal_out"): parent_player.num_portals_out -= 1
+		elif (type == "proxbomb"): parent_player.num_prox_bombs -= 1
+		
 		Global.game.world.add_trap(sqr[0], sqr[1], self.parent_player.player_id, type)
 		Global.trap_instances[Global.trap_instances.size() - 1]._set()
 	
