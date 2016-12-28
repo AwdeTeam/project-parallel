@@ -17,18 +17,15 @@ func _ready():
 func add_instance(x, y, player_id):
 	Global.player_adding_instance = player_id
 	
-	var pos = Global.get_grid_square(x, y)
+	var pos = Global.get_gridsquare_pixels(x, y)
 	
 	var vector_pos = Vector2(pos[0], pos[1])
-	print(str(player_id) + " setting instance pos to x=" + str(pos[0]) + " y=" + str(pos[1]))
-	
+
+	var playerinstance
 	if (player_id == 1):
-		var playerthing = preload("res://scenes/instance/instance1.tscn").instance()
-		get_node("instances_container").add_child(playerthing)
-		playerthing.get_node("kinematic_container").set_pos(vector_pos)
-		var actual = playerthing.get_node("kinematic_container").get_pos()
-		print("actual: x=" + str(actual.x) + " y=" + str(actual.y))
+		playerinstance = preload("res://scenes/instance/instance1.tscn").instance()
 	elif (player_id == 2):
-		var playerthing = preload("res://scenes/instance/instance2.tscn").instance()
-		get_node("instances_container").add_child(playerthing)
-		playerthing.get_node("kinematic_container").set_pos(vector_pos)
+		playerinstance = preload("res://scenes/instance/instance2.tscn").instance()
+	
+	get_node("instances_container").add_child(playerinstance)
+	playerinstance.get_node("kinematic_container").set_pos(vector_pos)

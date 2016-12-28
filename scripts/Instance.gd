@@ -4,10 +4,14 @@ var Global
 var PlayerClass = load("scripts/Player.gd")
 var parent_player
 
+var elapsed_time
+
 func _init():
 	pass
 
 func _ready():
+	
+	self.elapsed_time = 0
 
 	Global = get_node("/root/Global")
 	set_fixed_process(true)
@@ -15,19 +19,27 @@ func _ready():
 	print(str(Global.player_adding_instance))
 	if (Global.player_adding_instance == 1):
 		parent_player = Global.player_1
-		Global.player_1_instances.append(self)
 	elif (Global.player_adding_instance == 2):
 		parent_player = Global.player_2
-		Global.player_2_instances.append(self)
+
+	parent_player.instances.append(self)
+	
+	# make all other members of this player's instance team ignore eachother
+	for instance in parent_player.instances:
+		self.ignore_collision_body(instance)
+		instance.ignore_collision_body(self)
 
 func focus():
 	get_node("instance_camera").make_current()
+	Global.currently_active_instance = self
 
 func ignore_collision_body(body):
 	self.add_collision_exception_with(body)
 
 func _fixed_process(delta):
 	if(Global.player_turn != self.parent_player.player_id):
+		return
+	if (Global.currently_active_instance != self):
 		return
 	# determine if must move
 	var up = Input.is_action_pressed("game_up")

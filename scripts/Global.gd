@@ -21,5 +21,10 @@ var player_2_instances = []
 
 var player_adding_instance
 
-static func get_grid_square(x, y):
+var currently_active_instance
+
+static func get_gridsquare_pixels(x, y):
 	return [x*160, y*160]
+
+static func get_pixels_gridsquare(x, y):
+	return [round(x/160), round(y/160)]
