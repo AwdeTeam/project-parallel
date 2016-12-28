@@ -4,6 +4,8 @@ var Global
 var PlayerClass = load("scripts/Player.gd")
 var parent_player
 
+var instance_index # index in players instance array
+
 var elapsed_time
 var lbl_counter
 
@@ -24,6 +26,7 @@ func _ready():
 		parent_player = Global.player_2
 
 	parent_player.instances.append(self)
+	parent_player.refresh_instance_indices()
 	
 	# make all other members of this player's instance team ignore eachother
 	for instance in parent_player.instances:
@@ -35,6 +38,7 @@ func _ready():
 func focus():
 	get_node("instance_camera").make_current()
 	Global.currently_active_instance = self
+	parent_player.active_instance_index = self.instance_index
 
 func ignore_collision_body(body):
 	self.add_collision_exception_with(body)
@@ -102,8 +106,31 @@ func _fixed_process(delta):
 
 # merges this instance into the passed instance
 func merge(instance):
+	# compare instance times
+	var instance_time = instance.elapsed_time
 	
-	pass
+	# determine smaller instance
+	var smaller_instance
+	var larger_instance
+	if (instance_time < self.elapsed_time): 
+		smaller_instance = instance
+		larger_instance = self
+	else: 
+		smaller_instance = self
+		larger_instance = instance
+	
+	# add smaller instance time back to counter
+	var smaller_time = smaller_instance.elapsed_time
+	parent_player.subtract_time(-smaller_time)
+	
+	# remove smaller instance
+	smaller_instance.remove()
+	larger_instance.focus()
+
+func remove():
+	parent_player.instances.remove(self.instance_index)
+	parent_player.refresh_instance_indices()
+	get_parent().remove_child(self)
 
 func calculate_movement(delta, direction):
 	# Calculate cardinal distance and diaganol distance

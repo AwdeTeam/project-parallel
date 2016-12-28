@@ -2,8 +2,8 @@
 extends Node # won't get processed without this
 
 
-var time = 120 # in seconds
-var actual_time = 120.0 # float used internally, time above is rounded and for external usage
+var time # in seconds
+var actual_time # float used internally, time above is rounded and for external usage
 
 var speed = 500
 var player_id = 0
@@ -17,8 +17,14 @@ func _init(speed, player, Global):
 	self.speed = speed
 	self.player_id = player
 	self.Global = Global
-	self.time = 120
-	self.actual_time = 120.0
+	self.time = 120 + Global.SPLIT_PENALTY
+	self.actual_time = self.time
+
+func refresh_instance_indices():
+	var index = 0
+	for instance in instances:
+		instance.instance_index = index
+		index += 1
 
 func focus():
 	instances[0].focus()

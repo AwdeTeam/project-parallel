@@ -22,10 +22,16 @@ func add_instance(x, y, player_id):
 	var vector_pos = Vector2(pos[0], pos[1])
 
 	var playerinstance
+	var player
 	if (player_id == 1):
 		playerinstance = preload("res://scenes/instance/instance1.tscn").instance()
+		player = Global.player_1
 	elif (player_id == 2):
 		playerinstance = preload("res://scenes/instance/instance2.tscn").instance()
+		player = Global.player_2
 	
 	get_node("instances_container").add_child(playerinstance)
 	playerinstance.get_node("kinematic_container").set_pos(vector_pos)
+	
+	# deduct split penalty
+	player.subtract_time(Global.SPLIT_PENALTY)

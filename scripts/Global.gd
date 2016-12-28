@@ -11,6 +11,9 @@ const SOUTHWEST = 5
 const WEST = 6
 const NORTHWEST = 7
 
+const SPLIT_PENALTY = 1 # amount of time deducted when you split
+
+
 # player turn
 var player_turn = 0 # 0 = none (in between), 1 = player 1, 2 = player 2
 var player_1
